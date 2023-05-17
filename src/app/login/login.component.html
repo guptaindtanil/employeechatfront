@@ -1,0 +1,35 @@
+<h1>Login to continue...</h1>
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="user-email">Email: </label>
+                <input id="user-email" class="form-control" type="text" formControlName="email" autocomplete="off" required>
+
+                <div *ngIf="email!.invalid && (email!.dirty || email!.touched)" class="alert">
+                    <div *ngIf="email!.errors?.['required']">
+                        Email is required.
+                    </div>
+                    <div *ngIf="email!.errors?.['email']">
+                        Email is not valid.
+                    </div>
+                </div>
+
+                <label for="user-password">Password: </label>
+                <input id="user-password" type="password" class="form-control" formControlName="password" autocomplete="off" required>
+
+                <div *ngIf="password!.invalid && (password!.dirty || password!.touched)" class="alert">
+                    <div *ngIf="password!.errors?.['required']">
+                        password is required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>Login to access your data. OR click here to <a routerLink="/signup">Signup.</a></p>
+    <button type="submit" [disabled]="!loginForm.valid" class="form-submit">Login</button>
+
+</form>
